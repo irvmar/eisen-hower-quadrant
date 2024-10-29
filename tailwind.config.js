@@ -28,6 +28,9 @@ module.exports = {
         'border-right': 'border-right 1s linear infinite',
         'border-bottom': 'border-bottom 1s linear infinite',
         'border-left': 'border-left 1s linear infinite'
+      },
+      backgroundImage: {
+        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
       }
     },
   },

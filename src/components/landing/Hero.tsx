@@ -126,10 +126,6 @@ const Hero = () => {
 
           {/* Right side - Interactive task examples */}
           <div className="relative h-[500px] select-none">
-            {/* Glowing orb effect */}
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] bg-blue-500/10 rounded-full blur-[100px]" />
-            <div className="absolute top-1/3 right-1/3 w-[200px] h-[200px] bg-purple-500/10 rounded-full blur-[80px]" />
-            
             {taskExamples.map((task, index) => {
               const baseDelay = index * 0.1;
               const offsetX = isClient ? Math.random() * 3 - 1.5 : 0;
@@ -179,7 +175,7 @@ const Hero = () => {
             })}
 
             {/* Floating particles with trails */}
-            {isClient && [...Array(15)].map((_, i) => (
+            {isClient && typeof window !== 'undefined' && window.innerWidth > 768 && [...Array(15)].map((_, i) => (
               <motion.div
                 key={i}
                 className="absolute w-1.5 h-1.5 bg-white/40 rounded-full"
