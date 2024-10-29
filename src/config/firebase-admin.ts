@@ -14,8 +14,6 @@ if (!apps.length) {
     credential: cert({
       projectId: process.env.FIREBASE_PROJECT_ID,
       clientEmail: process.env.FIREBASE_CLIENT_EMAIL,
-      // The private key comes as a string with "\n" characters
-      // We need to replace them with actual newlines
       privateKey: process.env.FIREBASE_PRIVATE_KEY,
     }),
   });
