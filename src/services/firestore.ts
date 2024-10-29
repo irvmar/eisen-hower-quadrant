@@ -1,6 +1,6 @@
-import { collection, doc, setDoc, getDocs, getDoc } from '@firebase/firestore';
+import { doc, setDoc, getDoc } from '@firebase/firestore';
 import { db } from '../config/firebase';
-import { Task, Quadrant } from '../types';
+import { Quadrant } from '../types';
 import { saveToIndexedDB, loadFromIndexedDB } from './indexedDB';
 import { auth } from '../config/firebase';
 
@@ -15,14 +15,11 @@ const getCurrentUserId = (): string => {
 
 // Helper to get document reference for current user
 const getUserDocRef = () => {
-  const userId = getCurrentUserId();
-  return doc(db, COLLECTION_NAME, userId);
+  return doc(db, COLLECTION_NAME, getCurrentUserId());
 };
 
 export const saveMatrix = async (quadrants: Quadrant[]) => {
   try {
-    const userId = getCurrentUserId();
-    
     // Always save to IndexedDB first
     await saveToIndexedDB(quadrants);
 
@@ -30,7 +27,6 @@ export const saveMatrix = async (quadrants: Quadrant[]) => {
     if (navigator.onLine) {
       await setDoc(getUserDocRef(), {
         quadrants,
-        userId,
         updatedAt: new Date(),
         createdAt: new Date() // This will only be set on first creation due to merge: true
       }, { merge: true });
@@ -46,7 +42,6 @@ export const loadMatrix = async (): Promise<Quadrant[]> => {
     // Try to load from Firestore first if online
     if (navigator.onLine) {
       try {
-        const userId = getCurrentUserId();
         const docRef = getUserDocRef();
         const docSnap = await getDoc(docRef);
         
@@ -86,10 +81,8 @@ export const loadMatrix = async (): Promise<Quadrant[]> => {
 export const syncWithFirestore = async (quadrants: Quadrant[]) => {
   if (navigator.onLine) {
     try {
-      const userId = getCurrentUserId();
       await setDoc(getUserDocRef(), {
         quadrants,
-        userId,
         updatedAt: new Date()
       }, { merge: true });
     } catch (error) {
