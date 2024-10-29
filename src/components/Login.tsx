@@ -11,7 +11,7 @@ const Login: React.FC = () => {
 
   useEffect(() => {
     if (user) {
-      router.push('/');
+      router.push('/matrix');
     }
   }, [user, router]);
 
