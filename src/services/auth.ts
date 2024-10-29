@@ -7,7 +7,7 @@ import {
 import { auth, googleProvider } from '../config/firebase';
 import { clearUserData } from './firestore';
 
-// Replace any with proper type
+// Define the error type but use unknown in catch clause
 interface AuthError {
   message: string;
   code?: string;
@@ -17,8 +17,13 @@ export const signInWithGoogle = async () => {
   try {
     const result = await signInWithPopup(auth, googleProvider);
     return result.user;
-  } catch (error: AuthError) {
-    console.error('Error signing in with Google:', error.message);
+  } catch (error: unknown) {
+    // Type guard to check if error matches AuthError shape
+    if (error && typeof error === 'object' && 'message' in error) {
+      console.error('Error signing in with Google:', error.message);
+    } else {
+      console.error('Error signing in with Google:', error);
+    }
     throw error;
   }
 };
