@@ -119,7 +119,7 @@ const Hero = () => {
                 We are a team of productivity enthusiasts who love building tools for other professionals.
               </p>
               <p>
-                Our goal is to create the task management platform we've always wished we had — one that <span className="italic">just works</span>.
+                Our goal is to create the task management platform we&apos;ve always wished we had — one that <span className="italic">just works</span>.
               </p>
             </div>
           </motion.div>

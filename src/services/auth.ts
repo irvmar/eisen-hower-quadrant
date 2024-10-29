@@ -7,11 +7,17 @@ import {
 import { auth, googleProvider } from '../config/firebase';
 import { clearUserData } from './firestore';
 
+// Replace any with proper type
+interface AuthError {
+  message: string;
+  code?: string;
+}
+
 export const signInWithGoogle = async () => {
   try {
     const result = await signInWithPopup(auth, googleProvider);
     return result.user;
-  } catch (error: any) {
+  } catch (error: AuthError) {
     console.error('Error signing in with Google:', error.message);
     throw error;
   }

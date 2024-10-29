@@ -286,7 +286,7 @@ const EisenhowerMatrix: React.FC = () => {
       {!isOnline && (
         <div className="w-full border-b border-white/[0.1] bg-black p-2 text-center">
           <span className="text-sm text-yellow-500/70">
-            You're currently offline. Changes will be saved locally and synced when you're back online.
+            You&apos;re currently offline. Changes will be saved locally and synced when you&apos;re back online.
           </span>
         </div>
       )}
@@ -385,7 +385,7 @@ const EisenhowerMatrix: React.FC = () => {
             Add Tasks to Your Matrix
           </h2>
           <p className="text-sm text-white/50 mt-1">
-            Enter your tasks below and we'll help you organize them using the Eisenhower Matrix method.
+            Enter your tasks below and we&apos;ll help you organize them using the Eisenhower Matrix method.
           </p>
           <TaskInput
             onTasksAnalyzed={(tasks) => {

@@ -74,7 +74,7 @@ const TodayProgress: React.FC<TodayProgressProps> = ({ allTasks }) => {
       {todaysTasks.length > 0 && (
         <div className="border border-white/[0.1] rounded-lg p-3 bg-white/[0.02]">
           <h3 className="text-xs font-medium text-white/70 mb-2">
-            Today's Activity ({todaysTasks.filter(t => t.isDone).length} completed)
+            Today&apos;s Activity ({todaysTasks.filter(t => t.isDone).length} completed)
           </h3>
           <div className="space-y-2 max-h-32 overflow-y-auto">
             {todaysTasks.map(task => (
